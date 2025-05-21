@@ -2,12 +2,106 @@
 <html>
 <head>
     <title>Run Canvas</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+          *{
+        margin:0px;
+        padding:0px;
+        }
+    .container{
+       background-color:rgba(1, 16, 16, 0.784);
+       color:white
+    }
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #05182b; 
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.nav-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ded6d6;
+    margin: 0;
+}
+.nav-title:hover{
+     color:rgb(172, 208, 231);
+}
+    .hover-play-video {
+      width:300px;
+      display:block;
+      height: auto;
+      margin-bottom:20px;
+      border: 1px solid white;
+      transition: 0.2s ease-in-out;
+    }
+    .hover-play-video:hover{
+        transform: scale(1.1);
+    }
+    .mid{
+        padding:20px;
+    }
+    .mid-h1,.mid-h1-1{   
+        text-align:center;
+        transition: 0.3s ease-in-out;
+    }
+    .mid-h1:hover{
+        color:rgb(172, 208, 231);
+        transform: scale(1.05);
+    letter-spacing: 1px;
+    }
+     .mid-h1-1:hover{
+        color:rgb(172, 208, 231);
+        transform: scale(1.00);
+    letter-spacing: 1px;
+    }
+    .fing{
+        width:30%;
+        border:5px solid red;
+        margin:20px;
+    }
+    .i{
+        padding:10px;
+        margin:20px;
+        display:grid;
+        grid-template-columns:auto auto;
+    }
+    p{
+    font-size:larger;
+    }
+#btn{
+    width:100px;
+    height:60px;
+    border-radius: 10px; 
+    background-color:aquamarine;
+    position:relative;
+    left:300px;
+    bottom:15px;
+    transition: 0.2s ease-in-out;
+}
+#btn:hover{
+    background-color:rgba(5, 250, 250, 0.732);
+    transform: scale(1.04);
+    color:white;
+}
+footer{
+    display:flex;
+}
+     </style>
 </head>
 <body>
 <div class="container">
 <nav class="navbar">
-    <img src="floatpen.jpg" alt="FloatPen Logo" class="logo">
+    <img src="{{ url_for('static', filename='floatpen.jpg') }}" class="logo">
     <h1 class="nav-title">FloatPen</h1>
 </nav>
 
@@ -16,11 +110,12 @@
        <h1 class="mid-h1-1">Instructions</h1>
     <div class="i">  
         <p>1. How to draw</p>
-          <video class="hover-play-video" src="Draw.mp4" muted preload="none" playsinline></video>
+          <video class="hover-play-video" src="{{ url_for('static', filename='Draw.mp4') }}" muted preload="none" playsinline></video>
+
           <p>2. How to erase</p>
-          <video class="hover-play-video" src="EraseVideo.mp4" muted preload="none" playsinline></video>
+         <video class="hover-play-video" src="{{ url_for('static', filename='EraseVideo.mp4') }}" muted preload="none" playsinline></video>
         <p>3. How to change the color</p>
-          <video class="hover-play-video" src="FloatPenVideo1.mp4" muted preload="none" playsinline></video>
+          <video class="hover-play-video" src="{{ url_for('static', filename='FloatPenVideo1.mp4') }}" muted preload="none" playsinline></video>
     </div>  
    </div>   
    <footer>
@@ -38,7 +133,7 @@
         if (response.ok) {
           document.getElementById('status-msg').innerText = "Whiteboard Activated!";
         } else {
-          document.getElementById('status-msg').innerText = "Failed to start the whiteboard.";
+          document.getElementById('status-msg').innerText = "Failed to start";
         }
       })
       .catch(error => {
